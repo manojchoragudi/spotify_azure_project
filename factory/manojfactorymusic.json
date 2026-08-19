@@ -1,0 +1,15 @@
+{
+	"name": "manojfactorymusic",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2b37afea-f932-48b3-9ce2-bc597507ad19",
+		"tenantId": "17e28f17-c4f3-4fbc-b5b7-d459d1136e7b"
+	}
+}
