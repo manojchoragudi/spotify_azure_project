@@ -8,6 +8,11 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.loop_input",
+						"type": "Expression"
+					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -180,10 +185,13 @@
 												"parameters": {
 													"p_container": "bronze",
 													"p_folder": {
-														"value": "@pipeline().parameters.table",
+														"value": "@item().table",
 														"type": "Expression"
 													},
-													"p_file": "@concat(pipeline().parameters.table,'_',variables('current'))"
+													"p_file": {
+														"value": "@concat(item().table,'_',variables('current'))",
+														"type": "Expression"
+													}
 												}
 											},
 											"enableLogging": false,
@@ -296,7 +304,10 @@
 												"type": "DatasetReference",
 												"parameters": {
 													"p_container": "bronze",
-													"p_folder": "@{pipeline().parameters.table}_cdc",
+													"p_folder": {
+														"value": "@{item().table}_cdc",
+														"type": "Expression"
+													},
 													"p_file": "cdc.json"
 												}
 											}
@@ -312,7 +323,38 @@
 		"parameters": {
 			"loop_input": {
 				"type": "array",
-				"defaultValue": "{   {     \"schema\" : \"dbo\",     \"table\" : \"DimUser\"     \"cdc_col\" : \"updated_at\",     \"from_date\" : \"\"   },   {     \"schema\" : \"dbo\",     \"table\" : \"DimArtist\"     \"cdc_col\" : \"updated_at\",     \"from_date\" : \"\"   },   {     \"schema\" : \"dbo\",     \"table\" : \"DimTrack\"     \"cdc_col\" : \"updated_at\",     \"from_date\" : \"\"   },   {     \"schema\" : \"dbo\",     \"table\" : \"DimDate\"     \"cdc_col\" : \"updated_at\",     \"from_date\" : \"\"   },   {     \"schema\" : \"dbo\",     \"table\" : \"FactStream\"     \"cdc_col\" : \"updated_at\",     \"from_date\" : \"\"   } }"
+				"defaultValue": [
+					{
+						"schema": "dbo",
+						"table": "DimUser",
+						"cdc_col": "updated_at",
+						"from_date": ""
+					},
+					{
+						"schema": "dbo",
+						"table": "DimArtist",
+						"cdc_col": "updated_at",
+						"from_date": ""
+					},
+					{
+						"schema": "dbo",
+						"table": "DimTrack",
+						"cdc_col": "updated_at",
+						"from_date": ""
+					},
+					{
+						"schema": "dbo",
+						"table": "DimDate",
+						"cdc_col": "updated_at",
+						"from_date": ""
+					},
+					{
+						"schema": "dbo",
+						"table": "FactStream",
+						"cdc_col": "updated_at",
+						"from_date": ""
+					}
+				]
 			}
 		},
 		"variables": {
