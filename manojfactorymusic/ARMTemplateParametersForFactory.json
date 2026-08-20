@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "manojfactorymusic"
+		},
+		"ls_dl_spotifiy_accountKey": {
+			"value": ""
+		},
+		"ls_sql_spotify_password": {
+			"value": ""
+		},
+		"ls_dl_spotifiy_properties_typeProperties_url": {
+			"value": "https://spotifystoragenew.dfs.core.windows.net/"
+		},
+		"ls_sql_spotify_properties_typeProperties_server": {
+			"value": "spotifyserversql.database.windows.net"
+		},
+		"ls_sql_spotify_properties_typeProperties_database": {
+			"value": "spotifydb"
+		},
+		"ls_sql_spotify_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		}
+	}
+}
